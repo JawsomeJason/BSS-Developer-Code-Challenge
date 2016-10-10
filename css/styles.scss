@@ -1,0 +1,211 @@
+
+$colors: (
+  	  red: #d0201a,
+    green: #57ae00,
+     blue: #0f30ff,
+   orange: #ffb80f,
+   yellow: #ffe744,
+);
+
+$shape-size: 100px / 16px + 0em;
+$shape-gap: 1em;
+$shape-count: length($colors);
+$shapes-width: ($shape-size + $shape-gap) * length($colors) - $shape-gap;
+
+// basic reset
+*,
+*:before,
+*:after {
+	margin: 0;
+	padding: 0;
+	font: inherit;
+	box-sizing: border-box;
+}
+
+ul,
+ol {
+	margin-left: 1em;
+}
+
+html {
+	/* REQ: font should be Open Sans */
+	font-family: 'Open Sans', sans-serif;
+
+	/* REQ: when viewing on mobile (small screen?), background should be white */
+	background-color: white;
+	color: black;
+
+	@media screen and (min-width: 420px) {
+		background-color: black;
+		color: white;
+
+		a {
+			color: white;
+		}
+	}
+}
+
+body {
+	padding: 1em;
+}
+
+.site {
+	&__title {
+		text-align: center;
+	}
+}
+
+.made-with {
+	max-width: $shapes-width;
+	margin: 1em auto;
+}
+
+.shapes {
+	display: flex;
+	justify-content: center;
+	align-items: stretch;
+
+	// make room for shapes on top and bottom
+	padding: $shape-size 0;
+
+	/* REQ: Page should be responsive */
+	max-width: $shapes-width;
+	margin: 1em auto;
+}
+
+.shape {
+
+	&__input {
+		// hide checkbox off screen.  still accessible via focusing + labels
+		position: absolute;
+		left: -100vw;
+	}
+
+	&__label {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+
+		position: relative;
+		margin: 0 ($shape-gap/2);
+		text-align: center;
+		flex: 1 1 $shape-size;
+
+		// make font smaller on smaller screens so that all shapes can fit
+		$min-font-size: 10px;
+		$max-font-size: 16px;
+		$variable-font-min: 247px;
+		$variable-font-max: $variable-font-min * $max-font-size / $min-font-size;
+		$variable-font-size: $min-font-size / $variable-font-min * 100 + 0vw;
+
+		font-size: $min-font-size;
+
+		@media screen and (min-width: $variable-font-min) {
+			font-size: $variable-font-size;
+		}
+		@media screen and (min-width: $variable-font-max) {
+			font-size: 16px;
+		}
+
+		&:first-child {
+			margin-left: 0;
+		}
+		&:last-child {
+			margin-right: 0;
+		}
+	}
+
+
+	/* REQ: 5 circles in a row. */
+	&__example {
+		display: block;
+		width: 100%;
+		height: 0;
+		padding-top: 100%;
+
+
+		position: absolute;
+		top: 0;
+		left: 0;
+		transform: translateY(-100%);
+
+		// since interaction is happening on example, show a pointer
+		cursor: pointer;
+
+		// smooth toggle transition
+		transition: 			    top .4s ease,
+										transform .4s ease,
+										  opacity .4s ease;
+
+		&:before {
+			position: absolute;
+			content: '';
+			display: block;
+			width: 100%;
+			height: 100%;
+			top: 0;
+			left: 0;
+			background-color: black;
+			border-radius: $shape-size;
+			transition: border-radius .4s ease;
+
+		}
+	}
+
+	// color each of the shapes
+	@each $name, $color in $colors {
+		&__input[name="#{$name}"] + &__label &__example {
+			&:before {
+				background-color: $color;
+			}
+		}
+	}
+
+
+	/* REQ: Once the icon is clicked it should appear in a row below the original row and become a square. */
+	&__input:checked + &__label &__example {
+		top: 100%;
+		left: 0;
+		transform: translateY(0);
+
+		&:before {
+			border-radius: 0;
+		}
+	}
+
+	/* REQ: When hovered, text should appear under/above icon that states what the color is. */
+	&__name {
+		display: block;
+		width: 100%;
+		visibility:hidden;
+
+
+	}
+
+	&__example:hover ~ &__name {
+		.is-unchecked-hovered &,
+		.is-checked-hovered & {
+			visibility: visible;
+		}
+	}
+
+	/* REQ: When hovered, all other icons in the row should fade out to a 50% opacity. */
+	.is-unchecked-hovered > &__input:not(:checked) + &__label &__example {
+		opacity: .5;
+
+		&:hover {
+			opacity: 1;
+		}
+	}
+
+	.is-checked-hovered > &__input:checked + &__label &__example {
+		opacity: .5;
+
+		&:hover {
+			opacity: 1;
+		}
+	}
+}
+
+
+

@@ -1,0 +1,125 @@
+*,
+*:before,
+*:after {
+  margin: 0;
+  padding: 0;
+  font: inherit;
+  box-sizing: border-box; }
+
+ul,
+ol {
+  margin-left: 1em; }
+
+html {
+  /* REQ: font should be Open Sans */
+  font-family: 'Open Sans', sans-serif;
+  /* REQ: when viewing on mobile (small screen?), background should be white */
+  background-color: white;
+  color: black; }
+  @media screen and (min-width: 420px) {
+    html {
+      background-color: black;
+      color: white; }
+      html a {
+        color: white; } }
+
+body {
+  padding: 1em; }
+
+.site__title {
+  text-align: center; }
+
+.made-with {
+  max-width: 35.25em;
+  margin: 1em auto; }
+
+.shapes {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  padding: 6.25em 0;
+  /* REQ: Page should be responsive */
+  max-width: 35.25em;
+  margin: 1em auto; }
+
+.shape {
+  /* REQ: 5 circles in a row. */
+  /* REQ: Once the icon is clicked it should appear in a row below the original row and become a square. */
+  /* REQ: When hovered, text should appear under/above icon that states what the color is. */
+  /* REQ: When hovered, all other icons in the row should fade out to a 50% opacity. */ }
+  .shape__input {
+    position: absolute;
+    left: -100vw; }
+  .shape__label {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    margin: 0 0.5em;
+    text-align: center;
+    flex: 1 1 6.25em;
+    font-size: 10px; }
+    @media screen and (min-width: 247px) {
+      .shape__label {
+        font-size: 4.04858vw; } }
+    @media screen and (min-width: 395.2px) {
+      .shape__label {
+        font-size: 16px; } }
+    .shape__label:first-child {
+      margin-left: 0; }
+    .shape__label:last-child {
+      margin-right: 0; }
+  .shape__example {
+    display: block;
+    width: 100%;
+    height: 0;
+    padding-top: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translateY(-100%);
+    cursor: pointer;
+    transition: top .4s ease, transform .4s ease, opacity .4s ease; }
+    .shape__example:before {
+      position: absolute;
+      content: '';
+      display: block;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      background-color: black;
+      border-radius: 6.25em;
+      transition: border-radius .4s ease; }
+  .shape__input[name="red"] + .shape__label .shape__example:before {
+    background-color: #d0201a; }
+  .shape__input[name="green"] + .shape__label .shape__example:before {
+    background-color: #57ae00; }
+  .shape__input[name="blue"] + .shape__label .shape__example:before {
+    background-color: #0f30ff; }
+  .shape__input[name="orange"] + .shape__label .shape__example:before {
+    background-color: #ffb80f; }
+  .shape__input[name="yellow"] + .shape__label .shape__example:before {
+    background-color: #ffe744; }
+  .shape__input:checked + .shape__label .shape__example {
+    top: 100%;
+    left: 0;
+    transform: translateY(0); }
+    .shape__input:checked + .shape__label .shape__example:before {
+      border-radius: 0; }
+  .shape__name {
+    display: block;
+    width: 100%;
+    visibility: hidden; }
+  .is-unchecked-hovered .shape__example:hover ~ .shape__name, .is-checked-hovered .shape__example:hover ~ .shape__name {
+    visibility: visible; }
+  .is-unchecked-hovered > .shape__input:not(:checked) + .shape__label .shape__example {
+    opacity: .5; }
+    .is-unchecked-hovered > .shape__input:not(:checked) + .shape__label .shape__example:hover {
+      opacity: 1; }
+  .is-checked-hovered > .shape__input:checked + .shape__label .shape__example {
+    opacity: .5; }
+    .is-checked-hovered > .shape__input:checked + .shape__label .shape__example:hover {
+      opacity: 1; }
+
+/*# sourceMappingURL=styles.css.map */

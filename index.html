@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Jason Featheringham - Sunday, October 9th, 2016</title>
+
+        <link rel="stylesheet" href="css/styles.css" type="text/css" />
+        <!-- Open Sans from Google Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+        <script src="js/zepto.min.js" type="text/javascript"></script>
+        <script src="js/site.js" type="text/javascript"></script>
+    </head>
+<body>
+    <!-- coding challenge for https://www.bayshoresolutions.com/ideas/sdm_downloads/ui-developer-code-challenge/ -->
+    <!-- NOTE: Look for "REQ:" comments throughout code to see satisfied requirements. -->
+
+    <!-- REQ: the site title should be your name and date -->
+    <hgroup class="site__title">
+        <h1>Jason Featheringham</h1>
+        <h2>Sunday, October 9th, 2016</h2>
+    </hgroup>
+
+    <!-- REQ: We need 5 circles in a row. They should be in the following order. Red, Green, Blue, Orange and Yellow. -->
+    <div class="shapes">
+        <input id="red" class="shape__input" type="checkbox" name="red" />
+        <label class="shape__label" for="red">
+            <!-- element that will hold square/circle -->
+            <span class="shape__example"></span>
+            <span class="shape__name">Red</span>
+        </label>
+
+        <input id="green" class="shape__input" type="checkbox" name="green" />
+        <label class="shape__label" for="green">
+            <span class="shape__example"></span>
+            <span class="shape__name">Green</span>
+        </label>
+
+        <input id="blue" class="shape__input" type="checkbox" name="blue" />
+        <label class="shape__label" for="blue">
+            <span class="shape__example"></span>
+            <span class="shape__name">Blue</span>
+        </label>
+
+        <input id="orange" class="shape__input" type="checkbox" name="orange" />
+        <label class="shape__label" for="orange">
+            <span class="shape__example"></span>
+            <span class="shape__name">Orange</span>
+        </label>
+
+        <input id="yellow" class="shape__input" type="checkbox" name="yellow" />
+        <label class="shape__label" for="yellow">
+            <span class="shape__example"></span>
+            <span class="shape__name">Yellow</span>
+        </label>
+    </div>
+
+    <!-- REQ: Use any libraries you are comfortable with, just list them on the page after the circles and squares in a “Made with” section. -->
+    <div class="made-with">
+        <h2>Made With</h2>
+        <ul>
+            <li><a href="http://jquery.com">jQuery</a></li>
+            <li><a href="http://sass-lang.com">Sass</a></li>
+        </ul>
+    </div>
+</body>
+</html>
